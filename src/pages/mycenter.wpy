@@ -1,0 +1,15 @@
+<template>
+    <open-data type="userNickName"></open-data>
+    <open-data type="userAvatarUrl"></open-data>
+    <open-data type="userCity" lang="zh_CN"></open-data>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page{
+
+}
+</script>
+
+<style lang="scss">
+</style>

@@ -1,0 +1,13 @@
+$themeColor: #B9F1E4, #4FD2CD, #01A2AC, #333534, #E53D57;
+
+
+@mixin icon-block{
+    width: 40rpx;
+    height: 40rpx;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@mixin bg-shadow{
+    box-shadow: 0 10rpx 33rpx -2rpx #d9d9d9;
+}

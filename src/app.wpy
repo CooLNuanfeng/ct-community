@@ -1,0 +1,42 @@
+<script>
+import wepy from 'wepy'
+import 'wepy-async-function';
+
+export default class extends wepy.app {
+    constructor () {
+        super();
+        this.use('promisify');
+    }
+    config = {
+        pages: [
+            'pages/index',
+            'pages/mycenter'
+        ],
+        tabBar: {
+            color: '#999',
+            selectedColor: '#4FD2CD',
+            backgroundColor: '#fff',
+            list: [{
+                pagePath: "pages/index",
+                text: "首页",
+                iconPath: './assets/images/theme/home_disable.png',
+                selectedIconPath: './assets/images/theme/home.png'
+            }, {
+                pagePath: "pages/mycenter",
+                text: "个人中心",
+                iconPath: './assets/images/theme/user_disable.png',
+                selectedIconPath: './assets/images/theme/user.png'
+            }]
+        },
+        window: {
+            backgroundTextStyle: 'light',
+            navigationBarBackgroundColor: '#fff',
+            navigationBarTitleText: 'WeChat',
+            navigationBarTextStyle: 'black'
+        }
+    }
+    onLaunch() {
+      console.log('on launch')
+    }
+}
+</script>

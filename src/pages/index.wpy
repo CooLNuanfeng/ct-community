@@ -1,0 +1,169 @@
+<template>
+    <view class="home-page">
+        <view class="home-banner">
+            <view class="banner-toggle">
+                <view>位置</view>
+                <view><image src="../assets/images/icon/address.png" alt=""></view>
+            </view>
+            <view class="home-name">科技城</view>
+        </view>
+        <view class="bulletin">
+            <view class="bulletin-title">
+                <image src="../assets/images/icon/ding.png">
+                <text>小区公告</text>
+                <image src="../assets/images/icon/ding.png">
+            </view>
+            <view class="swiper-warp">
+                <swiper class="swiper" autoplay="true" circular="true">
+                      <block wx:for="{{swiperData}}" wx:key>
+                          <swiper-item class="swiper-text">
+                              <view wx:if="{{item.type=='text'}}">
+                                  <view class="swiper-title">{{item.title}}</view>
+                                  <view class="swiper-content">{{item.content}}</view>
+                                  <view class="bulletin-more">查看详情</view>
+                              </view>
+                          </swiper-item>
+                      </block>
+                </swiper>
+            </view>
+        </view>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: 'test'
+  }
+  data = {
+      userInfo: null,
+      indicatorDots: false,
+      swiperData: [
+          {title:'aaa',type:'text',content:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+          {title:'aaa',type:'text',content:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor '}
+      ]
+  }
+  onLoad(){
+      if(this.swiperData.length>1){
+          this.indicatorDots = true;
+      }
+      // wx.chooseLocation({
+      //     success: function(res){
+      //         console.log(res.name);
+      //         console.log(res.address);
+      //         console.log(res.latitude);
+      //         console.log(res.longitude);
+      //     }
+      // })
+  }
+  onShow() {
+      wx.getLocation({
+          type: 'wgs84',
+          success: function(res) {
+            var latitude = res.latitude
+            var longitude = res.longitude
+            var speed = res.speed
+            var accuracy = res.accuracy
+            console.log(latitude,longitude,speed,accuracy);
+          }
+      })
+  }
+}
+</script>
+
+<style lang="scss">
+@import '../assets/sass/_common.scss';
+.home-banner{
+    position: relative;
+    color: #fff;
+    background: nth($themeColor,2);
+}
+.banner-toggle{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60rpx;
+    padding: 20rpx;
+    font-size: 24rpx;
+    image{
+        @include icon-block;
+    }
+}
+.home-name{
+    height: 100rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40rpx;
+}
+
+.bulletin{
+    margin: 20rpx;
+    padding: 20rpx;
+    border: 10rpx solid #666;
+    border-radius: 6rpx;
+    background: rgba(254,227,136,.8);
+}
+.bulletin-title{
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20rpx;
+    image{
+        position: absolute;
+        top: 50rpx;
+        @include icon-block;
+        &:first-child{
+            left: -18rpx;
+            transform: rotate(270deg);
+        }
+        &:last-child{
+            right: -18rpx;
+        }
+    }
+    text{
+        font-size: 36rpx;
+        font-weight: bold;
+        color: nth($themeColor,5);
+    }
+}
+.swiper-warp{
+    padding: 15rpx;
+    border-radius: 10rpx;
+    background: #fff;
+    @include bg-shadow;
+}
+.swiper{
+
+}
+.swiper-text{
+    position: relative;
+    height: 350rpx;
+}
+.swiper-title{
+    font-size: 36rpx;
+    font-weight: bold;
+}
+.swiper-content{
+    max-height: 180rpx;
+    font-size: 26rpx;
+    line-height: 36rpx;
+    overflow: hidden;
+}
+.bulletin-more{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #fff;
+    padding: 10rpx 15rpx;
+    border-radius: 6rpx;
+    background: nth($themeColor,2);
+    font-size: 26rpx;
+}
+</style>
