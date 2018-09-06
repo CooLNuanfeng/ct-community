@@ -1,17 +1,17 @@
-<template>
-    <view class="home-page">
+<template lang="wxml">
+    <scroll-view scroll-y enable-back-to-top @scrolltolower="toLower" @scroll="scrollFn" scroll-top="{{scrollTop}}" class="home-page">
         <view class="home-banner">
             <view class="banner-toggle">
                 <view>位置</view>
-                <view><image src="../assets/images/icon/address.png" alt=""></view>
+                <view><image src="../assets/images/icon/address.png" alt=""/></view>
             </view>
             <view class="home-name">科技城</view>
         </view>
         <view class="bulletin">
             <view class="bulletin-title">
-                <image src="../assets/images/icon/ding.png">
+                <image src="../assets/images/icon/ding.png"/>
                 <text>小区公告</text>
-                <image src="../assets/images/icon/ding.png">
+                <image src="../assets/images/icon/ding.png"/>
             </view>
             <view class="swiper-warp">
                 <swiper class="swiper" autoplay="true" circular="true">
@@ -27,143 +27,105 @@
                 </swiper>
             </view>
         </view>
-    </view>
+        <view class="hot-part">
+            <view class="title-tag">热门动态</view>
+            <scroll-view scroll-x>
+                <hot-list :data="hotData"></hot-list>
+            </scroll-view>
+        </view>
+        <view class="ad-wall">
+            <view class="title-tag">推荐墙</view>
+            <scroll-view scroll-x>
+                <ad-list :data="adsData"></ad-list>
+            </scroll-view>
+        </view>
+        <view class="list-part">
+            <view class="title-tag">居民动态</view>
+            <view class="list-warp">
+                <dynamic-list :lists.sync="dynamicData"></dynamic-list>
+            </view>
+        </view>
+        <view class="go-top" hidden="{{!goTopShow}}" @tap="goTop"><image src="../assets/images/icon/top.png"/></view>
+    </scroll-view>
 </template>
 
 <script>
-import wepy from 'wepy'
+import wepy from 'wepy';
+import HotList from '../components/hotList';
+import DynamicList from '../components/dynamicList';
+import AdComponent from '../components/adComponent';
 
 export default class Index extends wepy.page {
-  config = {
-    navigationBarTitleText: 'test'
-  }
-  data = {
-      userInfo: null,
-      indicatorDots: false,
-      swiperData: [
-          {title:'aaa',type:'text',content:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
-          {title:'aaa',type:'text',content:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor '}
-      ]
-  }
-  onLoad(){
-      if(this.swiperData.length>1){
-          this.indicatorDots = true;
-      }
-      // wx.chooseLocation({
-      //     success: function(res){
-      //         console.log(res.name);
-      //         console.log(res.address);
-      //         console.log(res.latitude);
-      //         console.log(res.longitude);
-      //     }
-      // })
-  }
-  onShow() {
-      wx.getLocation({
-          type: 'wgs84',
-          success: function(res) {
-            var latitude = res.latitude
-            var longitude = res.longitude
-            var speed = res.speed
-            var accuracy = res.accuracy
-            console.log(latitude,longitude,speed,accuracy);
-          }
-      })
-  }
+    data = {
+        userInfo: null,
+        scrollTop: 0,
+        goTopShow: false,
+        swiperData: [
+            {title:'aaa',type:'text',content:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+            {title:'aaa',type:'text',content:'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor '}
+        ],
+        dynamicData: null,
+        hotData: null,
+        adsData: null,
+    }
+    components = {
+        'dynamic-list': DynamicList,
+        'ad-list': AdComponent,
+        'hot-list': HotList
+    }
+    onLoad(){
+        setTimeout(()=>{
+            this.dynamicData = this.hotData = [
+                {title:'特五西深由口'},
+                {title:'特五西深由口'},
+                {title:'特五西深由口'},
+                {title:'特五西深由口'},
+                {title:'特五西深由口'},
+                {title:'特五西深由口'},
+            ];
+        },1000);
+        // wx.chooseLocation({
+        //     success: function(res){
+        //         console.log(res.name);
+        //         console.log(res.address);
+        //         console.log(res.latitude);
+        //         console.log(res.longitude);
+        //     }
+        // })
+    }
+    onShow() {
+        // wx.getLocation({
+        //     type: 'wgs84',
+        //     success: function(res) {
+        //         var latitude = res.latitude
+        //         var longitude = res.longitude
+        //         var speed = res.speed
+        //         var accuracy = res.accuracy
+        //         console.log(latitude,longitude,speed,accuracy);
+        //     }
+        // })
+    }
+    methods = {
+        toLower(){
+            console.log('toLower');
+        },
+        scrollFn(ev){
+            let scrollTop = ev.detail.scrollTop;
+            this.scrollTop = scrollTop;
+            if(scrollTop > 540){
+                this.goTopShow = true;
+            }else{
+                this.goTopShow = false;
+            }
+        },
+        goTop(){
+            this.scrollTop = 0;
+        }
+
+    }
 }
 </script>
 
 <style lang="scss">
-@import '../assets/sass/_common.scss';
-.home-banner{
-    position: relative;
-    color: #fff;
-    background: nth($themeColor,2);
-}
-.banner-toggle{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 60rpx;
-    padding: 20rpx;
-    font-size: 24rpx;
-    image{
-        @include icon-block;
-    }
-}
-.home-name{
-    height: 100rpx;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 40rpx;
-}
-
-.bulletin{
-    margin: 20rpx;
-    padding: 20rpx;
-    border: 10rpx solid #666;
-    border-radius: 6rpx;
-    background: rgba(254,227,136,.8);
-}
-.bulletin-title{
-    position: relative;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20rpx;
-    image{
-        position: absolute;
-        top: 50rpx;
-        @include icon-block;
-        &:first-child{
-            left: -18rpx;
-            transform: rotate(270deg);
-        }
-        &:last-child{
-            right: -18rpx;
-        }
-    }
-    text{
-        font-size: 36rpx;
-        font-weight: bold;
-        color: nth($themeColor,5);
-    }
-}
-.swiper-warp{
-    padding: 15rpx;
-    border-radius: 10rpx;
-    background: #fff;
-    @include bg-shadow;
-}
-.swiper{
-
-}
-.swiper-text{
-    position: relative;
-    height: 350rpx;
-}
-.swiper-title{
-    font-size: 36rpx;
-    font-weight: bold;
-}
-.swiper-content{
-    max-height: 180rpx;
-    font-size: 26rpx;
-    line-height: 36rpx;
-    overflow: hidden;
-}
-.bulletin-more{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    color: #fff;
-    padding: 10rpx 15rpx;
-    border-radius: 6rpx;
-    background: nth($themeColor,2);
-    font-size: 26rpx;
-}
+@import '../assets/sass/home.scss';
 </style>

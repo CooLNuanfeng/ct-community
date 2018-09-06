@@ -1,0 +1,111 @@
+<template>
+    <view class="img-container">
+        <view class="img-warp">
+            <view class="img-box">
+                <view class="img-item" wx:for="{{imgArr}}" wx:key>
+                    <view class="img-del" @tap="del({{index}})">
+                        <image src="../assets/images/icon/close.png"/>
+                    </view>
+                    <image class="img" mode="aspectFit" src="{{item}}"/>
+                </view>
+                <view class="img-item img-item-add" @tap="chooseImage">
+                    <image src="../assets/images/icon/upload-add.png"/>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>
+
+<script>
+
+import wepy from 'wepy';
+
+export default class imgUploadForm extends wepy.component{
+    data = {
+        imgArr : [],
+        count : 6
+    };
+    methods = {
+        chooseImage(){
+            var vm = this;
+            var count = vm.imgArr.length;
+            wx.chooseImage({
+                count : 6-count,
+                success : function(res){
+                    // console.log(res);
+                    var len = res.tempFilePaths.length;
+                    for(var i=0; i<len; i++){
+                        vm.imgArr.push(res.tempFilePaths[i]);
+                    }
+                    // vm.imgArr = res.tempFilePaths;
+                    vm.$apply();
+                    vm.uploadchange();
+                }
+            });
+        },
+        del(index){
+            this.imgArr.splice(index,1);
+            this.$emit('uploadDel',this.imgArr);
+        },
+    }
+    uploadchange(){ //上传图片成功
+        this.$emit('uploadEnd',this.imgArr);
+    }
+}
+</script>
+
+<style lang="scss">
+.img-container{
+}
+.img-tips{
+    font-size: 28rpx;
+    color: #999;
+}
+.img-warp{
+    width: 100%;
+    padding: 20rpx 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.img-box{
+    width: 110%;
+    height: 378rpx;
+    font-size: 0;
+    overflow: hidden;
+}
+.img-item{
+    position: relative;
+    width: 230rpx;
+    height: 170rpx;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8rpx;
+    margin-bottom: 8rpx;
+    border: 1rpx solid #ebebeb;
+    box-sizing: border-box;
+    vertical-align: top;
+    image{
+        max-width: 100%;
+        max-height: 100%;
+    }
+    .img-del{
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 40rpx;
+        height: 40rpx;
+        background: rgba(0,0,0,.6);
+        image{
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+.img-item-add{
+    image{
+        width: 80rpx;
+        height: 80rpx;
+    }
+}
+</style>

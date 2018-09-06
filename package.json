@@ -22,8 +22,10 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "cross-env": "^5.1.3",
+    "cssnext": "^1.8.4",
     "wepy-compiler-babel": "^1.5.1",
     "wepy-compiler-less": "^1.3.10",
+    "wepy-compiler-postcss": "^1.0.2",
     "wepy-compiler-sass": "^1.3.12"
   }
 }

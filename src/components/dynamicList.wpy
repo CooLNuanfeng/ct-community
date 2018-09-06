@@ -1,0 +1,110 @@
+<template lang="wxml">
+    <block wx:for="{{lists}}" wx:key>
+        <!-- 有图 -->
+        <view class="dynamic-item" @tap="goDetail">
+            <view class="dynamic-img">
+                <image src="http://dummyimage.com/200x200"/>
+            </view>
+            <view class="dynamic-info">
+                <view class="dynamic-head">{{item.title}}</view>
+                <view class="dynamic-content">
+                    安条记因低县委所提化权联立重提。年量可质往可很查感增天连选声。成南难酸压儿很手定老建气采更。记花得最并去据数争风常强用何容细术。
+                </view>
+                <view class="dynamic-publish"><text>暖风</text> 发布于 2018-09-06</view>
+            </view>
+        </view>
+        <!-- 无图 -->
+        <view class="dynamic-item dynamic-item-plain" @tap="goDetail">
+            <view class="dynamic-info">
+                <view class="dynamic-head">{{item.title}}</view>
+                <view class="dynamic-content">
+                    安条记因低县委所提化权联立重提。年量可质往可很查感增天连选声。成南难酸压儿很手定老建气采更。记花得最并去据数争风常强用何容细术。
+                </view>
+                <view class="dynamic-publish"><text>暖风</text> 发布于 2018-09-06</view>
+            </view>
+        </view>
+    </block>
+</template>
+
+<script>
+import wepy from 'wepy';
+export default class DynamicList extends wepy.component {
+    props = {
+        lists: {
+            type: Array,
+            default: []
+        }
+    }
+    onLoad(){
+        console.log(this.lists);
+    }
+    methods = {
+        goDetail(){
+            wx.navigateTo({
+              url: 'detail?id=1'
+            })
+        }
+    }
+}
+</script>
+
+<style lang="scss">
+@import '../assets/sass/_common.scss';
+
+.dynamic-item{
+    display: flex;
+    padding: 0 15rpx;
+    margin-bottom: 10rpx;
+    border-radius: 10rpx;
+    background: #fff;
+}
+.dynamic-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200rpx;
+    height: 200rpx;
+    padding: 15rpx 0;
+    image{
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+.dynamic-info{
+    width: 460rpx;
+    padding: 10rpx 0 15rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 20rpx;
+}
+.dynamic-item-plain{
+    .dynamic-info{
+        flex: 1;
+        padding-left: 10rpx;
+    }
+}
+
+.dynamic-head{
+    padding-top: 10rpx;
+    color: #333;
+    font-size: 28rpx;
+    font-weight: bold;
+    @include text-overflow;
+}
+.dynamic-content{
+    font-size: 24rpx;
+    color: #666;
+    text-align: justify;
+    @include text-mutiplue-overflow(3);
+}
+.dynamic-publish{
+    text-align: right;
+    color: #999;
+    font-size: 24rpx;
+    @include text-overflow;
+    text{
+        color: nth($themeColor,2);
+    }
+}
+</style>

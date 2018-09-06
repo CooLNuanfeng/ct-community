@@ -1,15 +1,44 @@
 <template>
-    <open-data type="userNickName"></open-data>
-    <open-data type="userAvatarUrl"></open-data>
-    <open-data type="userCity" lang="zh_CN"></open-data>
+    <view class="center-page">
+        <view class="center-info">
+            <view class="user-img"><open-data type="userAvatarUrl"></open-data></view>
+            <view class="user-info">
+                <view><text>业主: </text><open-data type="userNickName"></open-data></view>
+                <view><text>小区: </text> 科技城</view>
+            </view>
+            <view class="center-btn" @tap="goPage('publish')">发布帖子</view>
+        </view>
+        <view class="center-item">
+            <view @tap="goPage('postlist')">我的发布</view>
+            <view @tap="goPage('about')">关于城市社区</view>
+            <view @tap="goPage('contact')">联系开发者</view>
+        </view>
+        <!-- <open-data type="userNickName"></open-data>
+        <open-data type="userAvatarUrl"></open-data>
+        <open-data type="userCity" lang="zh_CN"></open-data>
+        <button open-type="getUserInfo" @getuserinfo="getuserInfo">授权</button> -->
+    </view>
 </template>
 
 <script>
 import wepy from 'wepy'
 export default class Index extends wepy.page{
+    data = {
 
+    }
+    methods = {
+        getuserInfo(e){
+            console.log(e);
+        },
+        goPage(type){
+            wx.navigateTo({
+              url: type
+            })
+        }
+    }
 }
 </script>
 
 <style lang="scss">
+@import '../assets/sass/mycenter.scss';
 </style>

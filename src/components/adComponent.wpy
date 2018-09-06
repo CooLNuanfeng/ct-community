@@ -1,0 +1,176 @@
+<template lang="wxml">
+<block>
+    <view class="ad-item">
+        <image class="ad-img" src="http://dummyimage.com/600x350"/>
+        <view class="ad-info">
+            <view class="author-img">
+                <image src="http://dummyimage.com/60x60"/>
+            </view>
+            <view class="author-say">
+                <view class="author-name">
+                    <text>社区管理员</text>
+                    <view class="author-stars">
+                        <image src="../assets/images/icon/star.png" />
+                        <image src="../assets/images/icon/star.png" />
+                        <image src="../assets/images/icon/star.png" />
+                        <image src="../assets/images/icon/star.png" />
+                        <image src="../assets/images/icon/star.png" />
+                    </view>
+                </view>
+                <view class="author-text">
+                    安条记因低县委所提化权联立重提。年量可质往可很查感增天连选声。成南难酸压儿很手定老建气采更。记花得最并去据数争风常强用何容细术。
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="ad-item">
+        <view class="ad-plain-text">
+            <view class="author-say">
+                <view class="author-img">
+                    <image src="http://dummyimage.com/60x60"/>
+                </view>
+                <view class="author-name">
+                    <text>社区管理员</text>
+                    <view class="author-stars">
+                        <image src="../assets/images/icon/star.png"/>
+                        <image src="../assets/images/icon/star.png"/>
+                        <image src="../assets/images/icon/star.png"/>
+                        <image src="../assets/images/icon/star.png"/>
+                        <image src="../assets/images/icon/star.png"/>
+                    </view>
+                </view>
+            </view>
+            <view class="author-text">
+                安条记因低县委所提化权联立重提。年量可质往可很查感增天连选声。成南难酸压儿很手定老建气采更。记花得最并去据数争风常强用何容细术。
+            </view>
+        </view>
+    </view>
+    <view class="ad-item">
+        <image class="ad-img" src="http://dummyimage.com/600x350">
+        <view class="ad-info">
+            <view class="author-img">
+                <image src="http://dummyimage.com/60x60"/>
+            </view>
+            <view class="author-say">
+                <view class="author-name">
+                    <text>社区管理员</text>
+                    <view class="author-stars">
+                        <image src="../assets/images/icon/star.png"/>
+                        <image src="../assets/images/icon/star.png"/>
+                        <image src="../assets/images/icon/star.png"/>
+                        <image src="../assets/images/icon/star.png"/>
+                        <image src="../assets/images/icon/star.png"/>
+                    </view>
+                </view>
+                <view class="author-text">
+                    安条记因低县委所提化权联立重提。年量可质往可很查感增天连选声。成南难酸压儿很手定老建气采更。记花得最并去据数争风常强用何容细术。
+                </view>
+            </view>
+        </view>
+    </view>
+</block>
+</template>
+
+<script>
+import wepy from 'wepy';
+export default class AdComponent extends wepy.component {
+}
+</script>
+
+<style lang="scss">
+@import '../assets/sass/_common.scss';
+
+.ad-item{
+    position: relative;
+    width: 600rpx;
+    height: 350rpx;
+    display: inline-block;
+    margin-right: 20rpx;
+    border-radius: 20rpx;
+    border: 1rpx solid #ebebeb;
+    background: #fff;
+    overflow: hidden;
+    vertical-align: top;
+}
+.ad-title{
+    font-size: 30rpx;
+    color: nth($themeColor,2);
+    font-weight: bold;
+}
+.ad-img{
+    width: 100%;
+    height: 100%;
+}
+.ad-info{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 130rpx;
+    display: flex;
+    padding: 15rpx;
+    background: rgba(0,0,0,.8);
+}
+
+.author-img{
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 10rpx;
+    overflow: hidden;
+    image{
+        width: 100rpx;
+        height: 100rpx;
+    }
+}
+.author-say{
+    flex: 1;
+    width: 300rpx;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10rpx;
+}
+.author-name{
+    text{
+        padding-right: 10rpx;
+        font-size: 24rpx;
+        color: nth($themeColor,2);
+        font-weight: bold;
+    }
+}
+.author-stars{
+    display: inline-block;
+    image{
+        width: 25rpx;
+        height: 25rpx;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+.author-text{
+    white-space: normal;
+    font-size: 24rpx;
+    color: #fff;
+    @include text-mutiplue-overflow;
+}
+
+.ad-plain-text{
+    padding: 20rpx;
+    display: flex;
+    flex-direction: column;
+    .author-say{
+        padding-left: 0;
+        flex-direction: row;
+    }
+    .author-name{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding-left: 15rpx;
+    }
+    .author-text{
+        padding-top: 20rpx;
+        color: #333;
+        @include text-mutiplue-overflow(5);
+    }
+}
+</style>

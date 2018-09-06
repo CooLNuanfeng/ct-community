@@ -1,5 +1,21 @@
 $themeColor: #B9F1E4, #4FD2CD, #01A2AC, #333534, #E53D57;
+page{
+    height: 100%;
+    background: #f4f4f4;
+}
+@mixin text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
+@mixin text-mutiplue-overflow($n:2) {
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $n;
+    -webkit-box-orient: vertical;
+}
 
 @mixin icon-block{
     width: 40rpx;

@@ -1,0 +1,82 @@
+@charset "UTF-8";
+@import "_common.scss";
+
+.publish-page{
+    min-height: 100%;
+    background: #fff;
+}
+.publish-form{
+    padding: 20rpx;
+}
+.label-item{
+    display: flex;
+    align-items: flex-start;
+    padding: 15rpx 0;
+    border-bottom: 1rpx solid #ebebeb;
+    &:last-child{
+        border-bottom: 0;
+    }
+    text{
+        margin: 20rpx 10rpx 0;
+
+    }
+}
+
+.label-icon{
+    width: 40rpx;
+    height: 40rpx;
+    margin-top: 10rpx;
+    display: inline-block;
+}
+.label-require{
+    font-size: 20rpx;
+    color: #f00;
+}
+.label-input{
+    flex: 1;
+    padding-left: 15rpx;
+    height: 60rpx;
+    font-size: 30rpx;
+}
+.label-textarea{
+    flex: 1;
+    height: 500rpx;
+    font-size: 30rpx;
+    padding: 10rpx;
+    border-radius: 10rpx;
+    border: 1rpx solid #f3f3f3;
+}
+
+.label-title{
+    padding: 20rpx 0;
+    font-size: 30rpx;
+    color: #333;
+    text{
+        color: #999;
+        font-size: 26rpx;
+    }
+}
+
+.publish-btns{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    view{
+        flex: 1;
+        margin: 0 10rpx;
+        height: 70rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 28rpx;
+        color: #fff;
+        background: nth($themeColor,2);
+        border-radius: 10rpx;
+    }
+}

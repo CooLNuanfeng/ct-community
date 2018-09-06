@@ -1,0 +1,43 @@
+<template lang="wxml">
+    <view class="postlist-page">
+        <scroll-view class="postlist-warp"  scroll-y="true" scroll-top="{{scrollTop}}" lower-threshold="150" @scrolltolower="scrollFetch" @scroll="scroll">
+
+        </scroll-view>
+        <view class="postlist-btns">
+            <view><image src="../assets/images/icon/delete.png" @tap="selectDel" /></view>
+            <view hidden="{{!goTopShow}}" @tap="goTop"><image src="../assets/images/icon/top.png"/></view>
+        </view>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page{
+    data = {
+        selectStatus : false, //是否有选中
+        selectAll : false, //全选
+        startX : 0,
+        startY: 0,
+        scrollTop : 0, //回到顶部
+        goTopShow: true
+    }
+    methods = {
+        scrollFetch(){
+            console.log('scrollFetch');
+        },
+        scroll(){
+            console.log('scroll');
+        },
+        goTop(){
+
+        },
+        selectDel(){
+
+        }
+    }
+}
+</script>
+
+<style lang="scss">
+@import '../assets/sass/postlist.scss';
+</style>

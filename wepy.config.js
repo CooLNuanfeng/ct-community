@@ -1,5 +1,7 @@
 var prod = process.env.NODE_ENV === 'production'
 
+const cssnext = require('cssnext');
+
 module.exports = {
   wpyExt: '.wpy',
   eslint: false,
@@ -8,6 +10,13 @@ module.exports = {
     // less: {
     //   compress: true
     // },
+    postcss: {
+        plugins: [
+            cssnext({
+                browsers:['iOS 9', 'Android 4.4']
+            })
+        ]
+    },
     sass: {
       outputStyle: 'compressed'
     },
@@ -37,6 +46,14 @@ if (prod) {
   delete module.exports.compilers.babel.sourcesMap;
   // 压缩sass
   module.exports.compilers['sass'] = {outputStyle: 'compressed'}
+
+  module.exports.compilers['postcss'] = {
+      plugins: [
+          cssnext({
+              browsers:['iOS 9', 'Android 4.4']
+          })
+      ]
+  }
 
   // 压缩less
   // module.exports.compilers['less'] = {
