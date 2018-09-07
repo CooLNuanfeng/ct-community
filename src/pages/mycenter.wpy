@@ -4,7 +4,7 @@
             <view class="user-img"><open-data type="userAvatarUrl"></open-data></view>
             <view class="user-info">
                 <view><text>业主: </text><open-data type="userNickName"></open-data></view>
-                <view><text>小区: </text> 科技城</view>
+                <view><text>位置: </text>科技城</view>
             </view>
             <view class="center-btn" @tap="goPage('publish')">发布帖子</view>
         </view>

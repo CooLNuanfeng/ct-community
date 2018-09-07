@@ -10,11 +10,11 @@
                 <view class="author-name">
                     <text>社区管理员</text>
                     <view class="author-stars">
-                        <image src="../assets/images/icon/star.png" />
-                        <image src="../assets/images/icon/star.png" />
-                        <image src="../assets/images/icon/star.png" />
-                        <image src="../assets/images/icon/star.png" />
-                        <image src="../assets/images/icon/star.png" />
+                        <image src="../assets/images/icon/star.png"/>
+                        <image src="../assets/images/icon/star.png"/>
+                        <image src="../assets/images/icon/star.png"/>
+                        <image src="../assets/images/icon/star.png"/>
+                        <image src="../assets/images/icon/star.png"/>
                     </view>
                 </view>
                 <view class="author-text">
@@ -46,7 +46,7 @@
         </view>
     </view>
     <view class="ad-item">
-        <image class="ad-img" src="http://dummyimage.com/600x350">
+        <image class="ad-img" src="http://dummyimage.com/600x350" />
         <view class="ad-info">
             <view class="author-img">
                 <image src="http://dummyimage.com/60x60"/>

@@ -7,7 +7,7 @@
         </view>
         <view class="hot-body hot-plain-text">
             <view class="hot-title">特五西深由口</view>
-            <view class="hot-content">安条记因低县委所提化权联立重提。年量可质往可很查感增天连选声。成南难酸压儿很手定老建气采更。记花得最并去据数争风常强用何容细术。</view>
+            <view class="hot-content">安条记因低县委所提化权联立重提</view>
         </view>
         <view class="hot-footer">
             <image src="../assets/images/icon/hot.png"/><text>热度：99℃</text>
@@ -24,7 +24,7 @@
             </view>
             <view class="hot-info">
                 <view class="hot-title">特五西深由口</view>
-                <view class="hot-content">安条记因低县委所提化权联立重提。年量可质往可很查感增天连选声。成南难酸压儿很手定老建气采更。记花得最并去据数争风常强用何容细术。</view>
+                <view class="hot-content">安条记因低县委所提化权联立重提。记花得最并去据数争风常强用何容细术。</view>
                 <view class="hot-footer">
                     <image src="../assets/images/icon/hot.png"/><text>热度：<text>99℃</text></text>
                 </view>
@@ -75,17 +75,20 @@ export default class HotComponent extends wepy.component {
 @import '../assets/sass/_common.scss';
 .hot-item{
     width: 600rpx;
-    height: 300rpx;
+    height: 260rpx;
+    padding: 20rpx 0;
     border-radius: 10rpx;
     margin-right: 20rpx;
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
     border: 1rpx solid #ebebeb;
     background: #fff;
     overflow: hidden;
     vertical-align: top;
 }
 .hot-head{
-    padding: 20rpx;
+    padding: 0 20rpx;
     padding-bottom: 0;
     height: 30rpx;
     display: flex;
@@ -110,7 +113,7 @@ export default class HotComponent extends wepy.component {
 }
 .hot-body{
     display: flex;
-    padding: 30rpx 20rpx 15rpx;
+    padding: 0 20rpx;
 }
 .hot-plain-text{
     flex-direction: column;
@@ -150,6 +153,7 @@ export default class HotComponent extends wepy.component {
     justify-content: flex-end;
     align-items: flex-end;
     image{
+        margin-bottom: 8rpx;
         width: 35rpx;
         height: 35rpx;
         display: inline-block;

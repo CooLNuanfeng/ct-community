@@ -127,8 +127,8 @@ export default class Index extends wepy.page{
         display: inline-block;
         padding: 8rpx 12rpx;
         font-size: 26rpx;
-        color: #666;
-        border: 1rpx solid #666;
+        color: nth($themeColor,2);
+        border: 1rpx solid nth($themeColor,2);
         border-radius: 4rpx;
         margin-right: 20rpx;
         margin-right: 40rpx;
