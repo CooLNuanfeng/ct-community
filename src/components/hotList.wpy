@@ -148,17 +148,17 @@ export default class HotComponent extends wepy.component {
     padding: 0 20rpx;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
+    align-items: flex-end;
     image{
-        width: 30rpx;
-        height: 30rpx;
+        width: 35rpx;
+        height: 35rpx;
         display: inline-block;
         vertical-align: middle;
         margin-right: 5rpx;
     }
     text{
         font-size: 26rpx;
-        color: nth($themeColor,5);
+        color: nth($themeColor,2);
     }
 }
 </style>

@@ -3,7 +3,7 @@
         <view class="home-banner">
             <view class="banner-toggle">
                 <view>位置</view>
-                <view><image src="../assets/images/icon/address.png" alt=""/></view>
+                <view @tap="goLocation"><image src="../assets/images/icon/address.png" alt=""/></view>
             </view>
             <view class="home-name">科技城</view>
         </view>
@@ -120,6 +120,11 @@ export default class Index extends wepy.page {
         },
         goTop(){
             this.scrollTop = 0;
+        },
+        goLocation(){
+            wx.navigateTo({
+              url: 'location'
+            })
         }
 
     }

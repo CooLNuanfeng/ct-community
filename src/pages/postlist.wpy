@@ -1,10 +1,85 @@
 <template lang="wxml">
     <view class="postlist-page">
         <scroll-view class="postlist-warp"  scroll-y="true" scroll-top="{{scrollTop}}" lower-threshold="150" @scrolltolower="scrollFetch" @scroll="scroll">
+            <view class="postlist">
+                <view class="postlist-item-warp" @touchstart="touchstart" @touchmove="touchmove">
+                    <view class="postlist-item {{itemStatus<0?'item-selected':''}} {{itemStatus>0?'item-delete':''}}">
+                        <view class="postlist-select active">
+                            <view></view>
+                        </view>
+                        <view class="postlist-main">
+                            <view class="postlist-img">
+                                <image src="http://dummyimage.com/200x200" />
+                            </view>
+                            <view class="postlist-info">
+                                <view class="postlist-title">安条记因低县委所提化权联立重提</view>
+                                <view class="postlist-body">
+                                    安条记因低县委所提化权联立重提。年量可质往可很查感增天连选声。成南难酸压儿很手定老建气采更。记花得最并去据数争风常强用何容细术
+                                </view>
+                                <view class="postlist-footer">
+                                    <view><image src="../assets/images/icon/hot.png"/><text>热度：99℃</text></view>
+                                    <view>2018-09-03</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="postlist-del" @tap="delItem">删除</view>
+                    </view>
+                </view>
 
+                <view class="postlist-item-warp">
+                    <view class="postlist-item {{itemStatus<0?'item-selected':''}} {{itemStatus>0?'item-delete':''}}">
+                        <view class="postlist-select">
+                            <view></view>
+                        </view>
+                        <view class="postlist-main">
+                            <view class="postlist-info">
+                                <view class="postlist-title">安条记因低县委所提化权联立重提</view>
+                                <view class="postlist-body">
+                                    安条记因低县委所提化权联立重提。年量可质往可很查感增天连选声。成南难酸压儿很手定老建气采更。记花得最并去据数争风常强用何容细术
+                                </view>
+                                <view class="postlist-footer">
+                                    <view><image src="../assets/images/icon/hot.png"/><text>热度：99℃</text></view>
+                                    <view>2018-09-03</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="postlist-del">删除</view>
+                    </view>
+                </view>
+                <view class="postlist-item-warp">
+                    <view class="postlist-item {{itemStatus<0?'item-selected':''}} {{itemStatus>0?'item-delete':''}}">
+                        <view class="postlist-select">
+                            <view></view>
+                        </view>
+                        <view class="postlist-main">
+                            <view class="postlist-info">
+                                <view class="postlist-title">安条记因低县委所提化权联立重提</view>
+                                <view class="postlist-body">
+                                    安条记因低县委所提化权联立重提。年量可质往可很查感增天连选声。成南难酸压儿很手定老建气采更。记花得最并去据数争风常强用何容细术
+                                </view>
+                                <view class="postlist-footer">
+                                    <view><image src="../assets/images/icon/hot.png"/><text>热度：99℃</text></view>
+                                    <view>2018-09-03</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="postlist-del">删除</view>
+                    </view>
+                </view>
+                
+            </view>
+            <view class="selectBar-btns" hidden="{{!showBar}}">
+                <view class="select-l">
+                    <view @tap="doAllSelect">
+                        <text class="select-icon {{selectAll?'active':''}}"></text>全选
+                    </view>
+                </view>
+                <view class="select-m" @tap="cancel">取消</view>
+                <view class="select-r {{selectStatus?'active':''}}" @tap="deleteSelect">删除</view>
+            </view>
         </scroll-view>
         <view class="postlist-btns">
-            <view><image src="../assets/images/icon/delete.png" @tap="selectDel" /></view>
+            <view><image src="../assets/images/icon/delete.png" @tap="doDelete" /></view>
             <view hidden="{{!goTopShow}}" @tap="goTop"><image src="../assets/images/icon/top.png"/></view>
         </view>
     </view>
@@ -14,26 +89,72 @@
 import wepy from 'wepy'
 export default class Index extends wepy.page{
     data = {
+        itemStatus: 0, // 0 default -1 select 1 del
         selectStatus : false, //是否有选中
         selectAll : false, //全选
+        showBar: false, //是否显示底部删除操作
         startX : 0,
         startY: 0,
         scrollTop : 0, //回到顶部
-        goTopShow: true
+        goTopShow: false
     }
     methods = {
+        touchstart(ev){
+            this.startX = ev.changedTouches[0].clientX;
+            this.startY = ev.changedTouches[0].clientY;
+        },
+        touchmove(ev){
+            let startX = this.startX,//开始X坐标
+                startY = this.startY,//开始Y坐标
+                touchMoveX = ev.changedTouches[0].clientX,//滑动变化坐标
+                touchMoveY = ev.changedTouches[0].clientY,//滑动变化坐标
+                angle = this.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY });//获取滑动角度
+            //滑动超过80度角 return
+            if (Math.abs(angle) > 80) return;
+            if (touchMoveX > startX){//右滑
+                this.itemStatus = 0;
+            }else {//左滑
+                this.itemStatus = 1;
+            }
+        },
         scrollFetch(){
             console.log('scrollFetch');
         },
-        scroll(){
-            console.log('scroll');
+        scroll(ev){
+            let scrollTop = ev.detail.scrollTop;
+            this.scrollTop = scrollTop;
+            if(scrollTop > 540){
+                this.goTopShow = true;
+            }else{
+                this.goTopShow = false;
+            }
         },
         goTop(){
+            this.scrollTop = 0;
+        },
+        delItem(){
+            console.log('del item');
+        },
+        doDelete(){
+            this.itemStatus = -1;
+            this.showBar = true;
+        },
+        cancel(){
+            this.itemStatus = 0;
+            this.showBar = false;
+        },
+        deleteSelect(){
 
         },
-        selectDel(){
-
+        doAllSelect(){
+            this.selectAll = !this.selectAll;
         }
+    }
+    angle(start, end) {
+       var _X = end.X - start.X,
+         _Y = end.Y - start.Y
+       //返回角度 /Math.atan()返回数字的反正切值
+       return 360 * Math.atan(_Y / _X) / (2 * Math.PI);
     }
 }
 </script>

@@ -4,6 +4,121 @@
 .postlist-page,.postlist-warp{
     height: 100%;
 }
+.postlist{
+    padding: 20rpx;
+    padding-bottom: 100rpx;
+}
+.postlist-item-warp{
+    display: flex;
+    margin-bottom: 20rpx;
+    border-radius: 10rpx;
+    overflow: hidden;
+    background: #fff;
+}
+.postlist-item{
+    margin-right: -80rpx;
+    display: flex;
+    align-items: center;
+    transition: all .3s linear;
+    transform: translateX(-80rpx);
+}
+.item-selected{
+    transform: translateX(0);
+}
+.item-delete{
+    transform: translateX(-180rpx);
+}
+
+.postlist-select{
+    width: 80rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    view{
+        width: 40rpx;
+        height: 40rpx;
+        border: 1rpx solid #ebebeb;
+        border-radius: 20rpx;
+        box-sizing: border-box;
+    }
+    &.active{
+        view{
+            border: 15rpx solid nth($themeColor,2);
+            background: #fff;
+        }
+    }
+}
+
+.postlist-main{
+    flex: 1;
+    padding: 20rpx;
+    padding-right: 20rpx;
+    display: flex;
+}
+
+.postlist-img{
+    width: 240rpx;
+    height: 240rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15rpx;
+    image{
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+.postlist-info{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.postlist-title{
+    font-size: 30rpx;
+    color: #333;
+    font-weight: bold;
+    text-align: justify;
+    @include text-mutiplue-overflow(2);
+}
+.postlist-body{
+    font-size: 26rpx;
+    color: #666;
+    text-align: justify;
+    @include text-mutiplue-overflow(3);
+}
+.postlist-footer{
+    width: 100%;
+    height: 45rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 24rpx;
+    color: #999;
+    image{
+        width: 30rpx;
+        height: 30rpx;
+        display: inline-block;
+        margin-right: 10rpx;
+    }
+    text{
+        color: nth($themeColor,2);
+    }
+}
+
+.postlist-del{
+    display: flex;
+    width: 100rpx;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background: #FF284A;
+    color: #fff;
+    margin-right: -100rpx;
+    font-size: 26rpx;
+}
 
 .postlist-btns{
     position: fixed;
@@ -15,10 +130,8 @@
         margin-top: 20rpx;
         width: 80rpx;
         height: 80rpx;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
         padding: 15rpx;
+        text-align: center;
         box-sizing: border-box;
         border-radius: 40rpx;
         background: rgba(0,0,0,.8);
@@ -26,5 +139,63 @@
             width: 90%;
             height: 90%;
         }
+    }
+}
+
+
+.selectBar-btns{
+    position:fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    height: 90rpx;
+    font-size: 28rpx;
+    color: #333;
+    background: #fff;
+}
+.select-l{
+    flex: 3;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding-left: 20rpx;
+}
+.select-m{
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    background: #ddd;
+}
+.select-icon{
+    display: inline-block;
+    width: 30rpx;
+    height: 30rpx;
+    border: 1rpx solid #ebebeb;
+    margin-right: 10rpx;
+    background: #fff;
+    box-sizing: border-box;
+    border-radius: 15rpx;
+    &.active{
+        background: #fff;
+        color: #fff;
+        border: 10rpx solid nth($themeColor,2);
+    }
+}
+.select-r{
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #999;
+    color: #fff;
+    &.active{
+        background: #FF284A;
     }
 }

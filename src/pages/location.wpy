@@ -1,0 +1,151 @@
+<template lang="wxml">
+    <scroll-view scroll-y class="location-page" scroll-into-view="{{curView}}">
+        <view class="location-head">当前：<text>科技城</text></view>
+        <view class="location-warp">
+            <view id="A" class="location-tag">A</view>
+            <view class="location-items">
+                <view>阿莫花桥</view>
+                <view>阿桥</view>
+                <view>阿莫花桥莫花桥</view>
+                <view>阿莫花桥花</view>
+                <view>阿莫花桥莫</view>
+                <view>阿莫花桥</view>
+                <view>阿莫莫莫莫莫花桥</view>
+                <view>阿莫莫花桥</view>
+                <view>阿莫花桥</view>
+                <view>阿莫莫花桥</view>
+                <view>阿莫花</view>
+                <view>阿莫花桥</view>
+            </view>
+            <view id="B" class="location-tag">B</view>
+            <view class="location-items">
+                <view>阿莫花桥</view>
+                <view>阿桥</view>
+                <view>阿莫花桥莫花桥</view>
+                <view>阿莫花桥花</view>
+                <view>阿莫花桥莫</view>
+                <view>阿莫花桥</view>
+                <view>阿莫莫莫莫莫花桥</view>
+                <view>阿桥</view>
+            </view>
+            <view id="C" class="location-tag">C</view>
+            <view class="location-items">
+                <view>阿莫花桥</view>
+                <view>阿桥</view>
+                <view>阿莫花桥莫花桥</view>
+                <view>阿莫花桥花</view>
+                <view>阿莫花桥莫</view>
+                <view>阿莫花桥</view>
+                <view>阿莫莫莫莫莫花桥</view>
+                <view>阿桥</view>
+                <view>阿莫花桥</view>
+                <view>阿莫莫花桥</view>
+                <view>阿莫花</view>
+                <view>阿莫花桥</view>
+            </view>
+            <view id="D" class="location-tag">D</view>
+            <view class="location-items">
+                <view>阿莫花桥</view>
+                <view>阿莫花桥莫花桥</view>
+                <view>阿莫花桥花</view>
+                <view>阿莫花桥莫</view>
+                <view>阿莫花桥</view>
+                <view>阿莫莫莫莫莫花桥</view>
+                <view>阿桥</view>
+                <view>阿莫花桥</view>
+                <view>阿莫莫花桥</view>
+                <view>阿莫花</view>
+                <view>阿莫花</view>
+                <view>阿莫花桥</view>
+            </view>
+            <view id="E" class="location-tag">E</view>
+            <view class="location-items">
+                <view>阿莫花桥</view>
+                <view>阿莫花桥莫花桥</view>
+                <view>阿莫花桥花</view>
+                <view>阿莫花桥莫</view>
+                <view>阿莫花桥</view>
+                <view>阿莫莫莫莫莫花桥</view>
+                <view>阿桥</view>
+                <view>阿莫花桥</view>
+                <view>阿莫莫花桥</view>
+                <view>阿莫花</view>
+                <view>阿莫花</view>
+                <view>阿莫花桥</view>
+            </view>
+        </view>
+        <view class="nav-fixed">
+            <view wx:for="{{navItems}}" wx:key @tap="toView({{item}})" class="{{curView==item?'active':''}}">{{item}}</view>
+        </view>
+    </scroll-view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Index extends wepy.page{
+    data = {
+        curView: '',
+        navItems: ['A','B','C','D','E']
+    }
+    methods = {
+        toView(view){
+            this.curView = view;
+        }
+    }
+}
+</script>
+
+<style lang="scss">
+@import '../assets/sass/_common.scss';
+.location-page{
+    height: 100%;
+    background: #fff;
+}
+.location-head{
+    padding: 40rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #333;
+    text{
+        color: nth($themeColor,2);
+        font-weight: bold;
+    }
+}
+.location-warp{
+    padding: 0 40rpx;
+    margin-bottom: 40rpx;
+}
+.location-tag{
+    padding-bottom: 15rpx;
+    font-size: 28rpx;
+    font-weight: bold;
+}
+.location-items{
+    padding-bottom: 50rpx;
+    white-space: normal;
+    view{
+        display: inline-block;
+        padding: 8rpx 12rpx;
+        font-size: 26rpx;
+        color: #666;
+        border: 1rpx solid #666;
+        border-radius: 4rpx;
+        margin-right: 20rpx;
+        margin-right: 40rpx;
+        margin-bottom: 20rpx;
+    }
+}
+
+.nav-fixed{
+    position: fixed;
+    right: 20rpx;
+    top: 100rpx;
+    width: 20rpx;
+    text-align: center;
+    z-index: 10;
+    font-size: 26rpx;
+    view.active{
+        color: nth($themeColor,2);
+    }
+}
+</style>
