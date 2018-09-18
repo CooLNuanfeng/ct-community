@@ -36,7 +36,7 @@ export default class DynamicList extends wepy.component {
         }
     }
     onLoad(){
-        console.log(this.lists);
+        
     }
     methods = {
         goDetail(){
